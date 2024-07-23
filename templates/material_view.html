@@ -1,0 +1,54 @@
+{% extends "department.html" %}
+{% block title %}
+Study Material View
+{% endblock title %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% block css %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+    }
+    h2 {
+        color: #333;
+        
+    }
+    p {
+        color: #666;
+        margin-bottom: 10px;
+    }
+    a {
+        display: block;
+        width: 150px;
+       
+        text-align: center;
+        background-color:burlywood;
+        color: #fff;
+        text-decoration: none;
+        margin:20px auto;
+        border: 2px solid burlywood;
+        box-sizing: border-box;
+        border-radius:20px;
+
+    }
+    a:hover {
+        background-color:burlywood;
+
+    }
+    
+   
+</style>
+{% endblock css %}
+ 
+{% block body %}
+<h2>Study Material Details</h2>
+<p>Scheme: {{ material.MScheme }}</p>
+<p>Department: {{ material.MDept }}</p>
+<p>Semester: {{ material.MSem }}</p>
+<p>Subject: {{ material.MSub }}</p>
+<p>Module: {{ material.Module }}</p>
+<a href="{{ url_for('view_material', material_id=material.MId) }}">View Material</a>
+<a href="{{ url_for('download_material', material_id=material.MId) }}">Download Material</a>
+
+{% endblock body %}

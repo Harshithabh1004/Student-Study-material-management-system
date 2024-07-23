@@ -1,0 +1,46 @@
+{% extends 'manages.html' %}
+{% block title %}
+Student Details
+{% endblock title %}
+{% block body %}
+<div class="container mt-5">
+ <h3 class="text-center" ><span>Student Details</span> </h3>
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Student ID</th>
+      <th scope="col">STUDENT NAME</th>
+      <th scope="col">STUDENT EMAIL</th>
+      <th scope="col">STUDENT PASSWORD</th>
+      <th scope="col">ROLE</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+      <th scope="row">{{post.StudentId}}</th>
+      <td>{{post.Name}}</td>
+      <td>{{post.SEmail}}</td>
+      <td>{{post.SPassword}}</td>
+      <td>{{post.Role}}</td>
+      <td><a href="/edit/{{post.StudentId}}"><button class="btn btn-primary">Edit </button> </a> </td>
+      <td><a href="/delete/{{post.StudentId}}"><button onclick="return confirm('Are you sure to Delete data');" 
+        class="btn btn-danger">Delete </button> </a> </td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock body %}

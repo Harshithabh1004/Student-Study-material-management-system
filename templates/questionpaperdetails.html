@@ -1,0 +1,61 @@
+{% extends 'manages.html' %}
+{% block title %}
+Student Details
+{% endblock title %}
+
+
+
+{% block body %}
+<div class="container mt-5">
+ <h3 class="text-center" ><span>Previous Year Question Paper Details</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      
+      <th scope="col">QuestionPaper ID</th>
+      <th scope="col">Scheme</th>
+      <th scope="col">Department</th>
+      <th scope="col">Semester</th>
+      <th scope="col">Subject Name</th>
+      <th scope="col">Uploaded QuestionPaperuestion</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+      <th scope="row">{{post.PId}}</th>
+      <td>{{post.PScheme}}</td>
+      <td>{{post.PDept}}</td>
+      <td>{{post.PSem}}</td>
+      <td>{{post.PSub}}</td>
+      <td>{{post.UploadedPYQs}}</td>
+      <td><a href="/edit_questionpaper/{{post.PId}}"><button class="btn btn-primary">Edit </button> </a> </td>
+      <td><a href="/delete_questionpaper/{{post.PId}}"><button onclick="return confirm('Are you sure to Delete data');" class="btn btn-danger">Delete </button> </a> </td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+</div>
+
+{% endblock body %}
